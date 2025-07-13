@@ -66,8 +66,8 @@ function removeItem(idx) {
 }
 function updateItemTotal(idx) {
   const item = localItems[idx];
-  item.quantity = item.quantity === '' ? '' : Number(item.quantity);
-  item.price = item.price === '' ? '' : Number(item.price);
+  item.quantity = item.quantity === '' ? 0 : Number(item.quantity);
+  item.price = item.price === '' ? 0 : Number(item.price);
   item.total = (Number(item.quantity) || 0) * (Number(item.price) || 0);
 }
 </script>

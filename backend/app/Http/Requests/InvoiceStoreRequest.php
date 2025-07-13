@@ -31,7 +31,7 @@ class InvoiceStoreRequest extends FormRequest
             'createdAt' => 'required_if:status,pending|nullable|date',
             'items' => 'required_if:status,pending|nullable|array',
             'items.*.name' => 'required_if:status,pending|nullable|string|max:60',
-            'items.*.quantity' => 'required_if:status,pending|nullable|integer|min:1|max:999999',
+            'items.*.quantity' => 'required_if:status,pending|nullable|integer|max:999999',
             'items.*.price' => ['required_if:status,pending','nullable','numeric','min:0','max:999999.99','regex:/^\d{1,8}(\.\d{1,2})?$/'],
             'status' => ['required', new Enum(InvoiceStatus::class), 'in:draft,pending'],
             'senderAddress.street' => 'nullable|string|max:100',
@@ -49,6 +49,10 @@ class InvoiceStoreRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->sometimes('items', 'min:1', function ($input) {
+            return $input->status === 'pending';
+        });
+        
+        $validator->sometimes('items.*.quantity', 'min:1', function ($input) {
             return $input->status === 'pending';
         });
     }

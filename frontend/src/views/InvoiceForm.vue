@@ -235,7 +235,11 @@ onMounted(() => {
 
 // Clear draft from localStorage on submit (create mode only)
 async function submitForm() {
-  const itemsForPayload = form.value.items.map(({ name, quantity, price }) => ({ name, quantity, price }));
+  const itemsForPayload = form.value.items.map(({ name, quantity, price }) => ({
+    name,
+    quantity: quantity === '' ? 0 : Number(quantity),
+    price: price === '' ? 0 : Number(price),
+  }));
   const payload = {
     senderAddress: form.value.senderAddress,
     clientName: form.value.clientName,
