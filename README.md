@@ -1,16 +1,18 @@
 # Invoicing App
 
-A modern invoicing application with a Laravel backend and a Vue.js frontend. This project supports robust backend validation, clean UI/UX, and maintainable code.
+Invoicing application with a Laravel backend and a Vue.js frontend.
 
+[Watch demo video of the project running locally](https://app.screencastify.com/watch/RZss7Ny40z7ukXhTKwXl)
+
+- **Postman Collection:** All API endpoints are documented in the Postman collection file `Invoice_CRUD.postman_collection.json` located at the project root.
 ---
 
 ## Features
 - Create, update, view, and delete invoices
 - Draft and pending invoice status workflows
-- Mark invoices as paid (secure endpoint)
+- Mark invoices as paid
 - Strong backend validation and XSS protection
 - Modular, reusable Vue components
-- Consistent, modern UI
 
 ---
 
@@ -110,18 +112,7 @@ invoicing-app/
 ## Useful Commands
 - **Backend:**
   - `php artisan migrate:fresh --seed` — Reset and reseed the database
-  - `php artisan test` — Run backend tests
 - **Frontend:**
   - `npm run build` — Build for production
 
 ---
-
-## Security & Best Practices
-- All user input is sanitized to prevent XSS.
-- Only allowed status transitions are permitted.
-- Modular, maintainable codebase for both backend and frontend.
-
----
-
-## License
-This project is for educational/demo purposes. Add your license here if needed. 
