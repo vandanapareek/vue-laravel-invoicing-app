@@ -32,6 +32,7 @@ Invoicing application with a Laravel backend and a Vue.js frontend.
 ```sh
 git clone <repo-url> <folder-name>
 cd <folder-name>
+cd app
 ```
 
 ### 2. Backend Setup (Laravel)
