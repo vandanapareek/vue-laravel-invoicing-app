@@ -2,17 +2,17 @@
 
 Invoicing application with a Laravel backend and a Vue.js frontend.
 
-[Watch demo video of the project running locally](https://app.screencastify.com/watch/RZss7Ny40z7ukXhTKwXl)
-
 - **Postman Collection:** All API endpoints are documented in the Postman collection file `Invoice_CRUD.postman_collection.json` located at the project root.
+
+- **Demo:** [Watch demo video of the project running locally](https://app.screencastify.com/watch/RZss7Ny40z7ukXhTKwXl)
 ---
 
 ## Features
-- Create, update, view, and delete invoices
-- Draft and pending invoice status workflows
-- Mark invoices as paid
-- Strong backend validation and XSS protection
-- Modular, reusable Vue components
+- Create, update, view, and delete invoices.
+- Draft and pending invoice status workflows.
+- Mark invoices as paid.
+- Strong backend validation and XSS protection.
+- Modular, reusable Vue components.
 
 ---
 
@@ -28,8 +28,8 @@ Invoicing application with a Laravel backend and a Vue.js frontend.
 
 ### 1. Clone the Repository
 ```sh
-git clone <your-repo-url> invoicing-app
-cd invoicing-app
+git clone <repo-url> <folder-name>
+cd <folder-name>
 ```
 
 ### 2. Backend Setup (Laravel)
@@ -78,6 +78,15 @@ npm install
 - Copy `.env.example` to `.env`:
   ```sh
   cp .env.example .env
+  ```
+- Set your database settings in `.env`:
+  ```env
+  DB_CONNECTION=sqlite
+  DB_DATABASE=database/database.sqlite
+  ```
+- If the file `database/database.sqlite` does not exist, create it:
+  ```sh
+  touch database/database.sqlite
   ```
 - Set your API base URL in `.env`:
   ```env
