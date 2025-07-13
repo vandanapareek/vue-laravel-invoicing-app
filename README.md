@@ -2,7 +2,7 @@
 
 Invoicing application with a Laravel backend and a Vue.js frontend.
 
-- **Postman Collection:** All API endpoints are documented in the Postman collection file `Invoice_CRUD.postman_collection.json` located at the project root.
+- **Postman Collection:** All API endpoints are documented in the [Invoice_CRUD.postman_collection.json](./Invoice_CRUD.postman_collection.json) file located at the project root.
 
 - **Demo:** [Watch demo video of the project running locally](https://app.screencastify.com/watch/RZss7Ny40z7ukXhTKwXl)
 ---
@@ -95,12 +95,6 @@ The frontend will be available at the URL shown in your terminal (typically `htt
 
 ---
 
-## API Overview
-- All invoice-related endpoints are under `/api/invoices`.
-- Only `draft` and `pending` statuses can be set via create/update. Use the `/api/invoices/{id}/pay` endpoint to mark as paid.
-- All input is sanitized and validated on the backend.
-
----
 
 ## Project Structure
 ```
