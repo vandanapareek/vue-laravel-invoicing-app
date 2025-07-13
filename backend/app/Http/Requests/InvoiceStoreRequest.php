@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\Rule;
 use App\Enums\InvoiceStatus;
 use App\Enums\PaymentTerms;
 
@@ -24,10 +25,21 @@ class InvoiceStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $allowedTerms = array_map(fn($case) => $case->value, PaymentTerms::cases());
         return [
             'clientName' => 'required_if:status,pending|nullable|string|max:100',
             'clientEmail' => 'required_if:status,pending|nullable|email|max:254',
-            'paymentTerms' => ['required_if:status,pending', 'nullable', 'in:1,7,14,30', new Enum(PaymentTerms::class)],
+            'paymentTerms' => [
+                'required_if:status,pending',
+                'integer',
+                Rule::in($allowedTerms),
+                new Enum(PaymentTerms::class),
+                function($attribute, $value, $fail) {
+                    if ($value === '' || is_string($value)) {
+                        $fail('The '.$attribute.' must be an integer and not an empty string.');
+                    }
+                }
+            ],
             'createdAt' => 'required_if:status,pending|nullable|date',
             'items' => 'required_if:status,pending|nullable|array',
             'items.*.name' => 'required_if:status,pending|nullable|string|max:60',
