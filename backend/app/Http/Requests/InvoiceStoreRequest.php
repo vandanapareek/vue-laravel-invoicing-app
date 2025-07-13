@@ -31,8 +31,28 @@ class InvoiceStoreRequest extends FormRequest
             'createdAt' => 'required_if:status,pending|nullable|date',
             'items' => 'required_if:status,pending|nullable|array',
             'items.*.name' => 'required_if:status,pending|nullable|string|max:60',
-            'items.*.quantity' => 'required_if:status,pending|nullable|integer|max:999999',
-            'items.*.price' => ['required_if:status,pending','nullable','numeric','min:0','max:999999.99','regex:/^\d{1,8}(\.\d{1,2})?$/'],
+            'items.*.quantity' => [
+                'required_if:status,pending',
+                'integer',
+                'max:999999',
+                function($attribute, $value, $fail) {
+                    if ($value === '' || is_string($value)) {
+                        $fail('The '.$attribute.' must be an integer and not an empty string.');
+                    }
+                }
+            ],
+            'items.*.price' => [
+                'required_if:status,pending',
+                'numeric',
+                'min:0',
+                'max:999999.99',
+                'regex:/^\d{1,8}(\.\d{1,2})?$/',
+                function($attribute, $value, $fail) {
+                    if ($value === '' || is_string($value)) {
+                        $fail('The '.$attribute.' must be a number and not an empty string.');
+                    }
+                }
+            ],
             'status' => ['required', new Enum(InvoiceStatus::class), 'in:draft,pending'],
             'senderAddress.street' => 'nullable|string|max:100',
             'senderAddress.city' => 'nullable|string|max:50',

@@ -186,8 +186,11 @@ class InvoiceController extends Controller
         foreach ($data as $key => $value) {
             if (is_array($value)) {
                 $data[$key] = $this->sanitizeInvoiceInput($value);
-            } else {
+            } elseif (is_string($value)) {
                 $data[$key] = Purifier::clean($value, 'plain');
+            } else {
+                // Leave integers, floats, booleans, etc. untouched
+                $data[$key] = $value;
             }
         }
         return $data;

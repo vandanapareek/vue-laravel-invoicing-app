@@ -23,18 +23,19 @@ const props = defineProps({
 });
 
 const shouldTruncate = computed(() => {
-  return props.text.length > props.maxLength;
+  return (props.text ?? '').length > props.maxLength;
 });
 
 const displayText = computed(() => {
+  const safeText = props.text ?? '';
   if (shouldTruncate.value) {
-    return props.text.substring(0, props.maxLength) + props.suffix;
+    return safeText.substring(0, props.maxLength) + props.suffix;
   }
-  return props.text;
+  return safeText;
 });
 
 const fullText = computed(() => {
-  return props.text;
+  return props.text ?? '';
 });
 </script>
 
