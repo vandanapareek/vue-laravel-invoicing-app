@@ -246,7 +246,7 @@ async function submitForm() {
     clientEmail: form.value.clientEmail,
     clientAddress: form.value.clientAddress,
     createdAt: form.value.createdAt,
-    paymentTerms: form.value.paymentTerms,
+    paymentTerms: Number(form.value.paymentTerms),
     description: form.value.description,
     items: itemsForPayload,
     status: form.value.status,
