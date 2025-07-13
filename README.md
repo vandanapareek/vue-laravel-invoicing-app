@@ -19,8 +19,10 @@ Invoicing application with a Laravel backend and a Vue.js frontend.
 ## Prerequisites
 - PHP >= 8.1
 - Composer
-- Node.js (v16+ recommended) & npm
+- Node.js (v20+ required) & npm (v10+ required)
 - MySQL or compatible database (or SQLite for local dev)
+
+> This project is tested with Node.js v20.x and npm v10.x. Lower versions may not work due to modern dependencies.
 
 ---
 
