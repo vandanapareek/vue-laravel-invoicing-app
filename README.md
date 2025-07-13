@@ -40,14 +40,15 @@ composer install
 php artisan key:generate
 ```
 
-- Configure your database settings in `.env`:
+- Set your database settings in `.env`:
   ```env
-  DB_CONNECTION=mysql
-  DB_HOST=127.0.0.1
-  DB_PORT=3306
-  DB_DATABASE=your_db_name
-  DB_USERNAME=your_db_user
-  DB_PASSWORD=your_db_password
+  DB_CONNECTION=sqlite
+  DB_DATABASE=database/database.sqlite
+  
+  ```
+- If the file `database/database.sqlite` does not exist, create it:
+  ```sh
+  touch database/database.sqlite
   ```
 
 - Run migrations:
@@ -79,15 +80,7 @@ npm install
   ```sh
   cp .env.example .env
   ```
-- Set your database settings in `.env`:
-  ```env
-  DB_CONNECTION=sqlite
-  DB_DATABASE=database/database.sqlite
-  ```
-- If the file `database/database.sqlite` does not exist, create it:
-  ```sh
-  touch database/database.sqlite
-  ```
+
 - Set your API base URL in `.env`:
   ```env
   VITE_API_BASE_URL=http://localhost:8000
