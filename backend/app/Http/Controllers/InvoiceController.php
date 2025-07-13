@@ -57,6 +57,7 @@ class InvoiceController extends Controller
         // Set status
         if (($sanitized['status'] ?? null) === InvoiceStatus::Draft->value) {
             $sanitized['status'] = InvoiceStatus::Draft->value;
+            $sanitized['createdAt'] = empty($sanitized['createdAt']) ? Carbon::today()->toDateString() : $sanitized['createdAt'];
         } elseif (($sanitized['status'] ?? null) === InvoiceStatus::Pending->value) {
             $sanitized['status'] = InvoiceStatus::Pending->value;
         } else {
